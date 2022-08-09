@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "900514669765",
+    "firebase_url": "https://pythonmysql-db11a-default-rtdb.firebaseio.com",
+    "project_id": "pythonmysql-db11a",
+    "storage_bucket": "pythonmysql-db11a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900514669765:android:c3af8e30268a1642cf7cac",
+        "android_client_info": {
+          "package_name": "com.example.mangasite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900514669765-76bh6o2211li3k03kv9md7gonnp1ed49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mangasite",
+            "certificate_hash": "e1c3d4ad36b4c33ef3cdaf62a0ba55d936334b34"
+          }
+        },
+        {
+          "client_id": "900514669765-a6vfqbuegfkvt3t9uth845mqje13nc0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnhJR2isax4kArj1Ir7XgcKOSGWea_nWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900514669765-a6vfqbuegfkvt3t9uth845mqje13nc0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
