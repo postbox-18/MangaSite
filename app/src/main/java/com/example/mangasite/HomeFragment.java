@@ -1,9 +1,11 @@
 package com.example.mangasite;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,10 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
+import android.webkit.WebView;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +54,13 @@ public class HomeFragment extends Fragment {
     private TextView name,site;
     private String s_name,s_site;
     private GetViewModel getViewModel;
+
+
+    //BottomSheetDialog
+    private LinearLayout mBottomSheetLayout;
+    private BottomSheetBehavior sheetBehavior;
+    private WebView webView;
+    private ConstraintLayout constraintLayout;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -89,6 +102,7 @@ public class HomeFragment extends Fragment {
         getViewModel = new ViewModelProvider(getActivity()).get(GetViewModel.class);
 
         add=view.findViewById(R.id.add);
+        constraintLayout=view.findViewById(R.id.constraintLayout);
         mangaList=view.findViewById(R.id.mangaList);
         mangaList.setHasFixedSize(true);
         mangaList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -129,9 +143,9 @@ public class HomeFragment extends Fragment {
                         }
                         else {
 
-                            getViewModel.updateItem(s_name,s_site);
+                            getViewModel.updateItem(s_name,s_site,dialog);
                             Toast.makeText(getContext(), "Item Added", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+
                         }
 
                     }
@@ -143,11 +157,44 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //get mangaSite List
         getViewModel.getMangaSiteListsLiveData().observe(getViewLifecycleOwner(), new Observer<List<MangaSiteList>>() {
             @Override
             public void onChanged(List<MangaSiteList> mangaSiteLists) {
             adapterMangaSite=new AdapterMangaSite(getViewModel,getContext(),mangaSiteLists);
                 mangaList.setAdapter(adapterMangaSite);
+            }
+        });
+
+        //Bottom sheet
+        mBottomSheetLayout = view.findViewById(R.id.mBottomSheetLayout);
+        sheetBehavior = BottomSheetBehavior.from(mBottomSheetLayout);
+        webView=view.findViewById(R.id.webView);
+
+       /* if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        } else {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }*/
+
+
+        //get selected MangaList
+        getViewModel.getSelectedMangaSiteListsLiveData().observe(getViewLifecycleOwner(), new Observer<List<MangaSiteList>>() {
+            @SuppressLint("SetJavaScriptEnabled")
+            @Override
+            public void onChanged(List<MangaSiteList> mangaSiteLists) {
+                if(mangaSiteLists.size()>0) {
+                    constraintLayout.setVisibility(View.VISIBLE);
+
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.loadUrl(mangaSiteLists.get(0).getSite());
+                }
+                else
+                {                constraintLayout.setVisibility(View.GONE);
+
+                }
+
             }
         });
 

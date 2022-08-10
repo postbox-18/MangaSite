@@ -12,6 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
 public class AdapterMangaSite extends RecyclerView.Adapter<AdapterMangaSite.ViewHolder> {
 
     private List<MangaSiteList> mangaSiteLists = new ArrayList<>();
+    private List<MangaSiteList> selectedMangaSiteLists = new ArrayList<>();
     private Context context;
     private String TAG = "AdapterMangaSite";
     private GetViewModel getViewModel;
@@ -49,6 +51,15 @@ public class AdapterMangaSite extends RecyclerView.Adapter<AdapterMangaSite.View
         holder.name.setText(item1.getName());
         holder.site.setText(item1.getSite());
 
+        holder.nameCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedMangaSiteLists=new ArrayList<>();
+                selectedMangaSiteLists.add(mangaSiteLists.get(position));
+                getViewModel.setSelectedMangaSiteLists(selectedMangaSiteLists);
+            }
+        });
+
 
     }
 
@@ -62,11 +73,13 @@ public class AdapterMangaSite extends RecyclerView.Adapter<AdapterMangaSite.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name,site;
+        private CardView nameCard;
 
         public ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
             site = view.findViewById(R.id.site);
+            nameCard = view.findViewById(R.id.nameCard);
 
         }
     }

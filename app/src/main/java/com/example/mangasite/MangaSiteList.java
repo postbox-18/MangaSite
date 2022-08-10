@@ -1,9 +1,15 @@
 package com.example.mangasite;
 
 public class MangaSiteList {
-    private final String name,site;
-    public MangaSiteList(String name, String site) {
+    private  String name,site;
+    public MangaSiteList() {
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSite(String site) {
         this.site = site;
     }
 

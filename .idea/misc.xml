@@ -8,6 +8,11 @@
         <entry key="..\:/Users/aravi/AndroidStudioProjects/MangaSite/app/src/main/res/layout/add_itembox.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/MangaSite/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/aravi/AndroidStudioProjects/MangaSite/app/src/main/res/layout/item_cardview.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/drawable/ic_up_arrow_main.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/swipe_box.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/bottomsheet_webview.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11574074074074074" />
+        <entry key="app/src/main/res/layout/item_cardview.xml" value="0.11574074074074074" />
       </map>
     </option>
   </component>
